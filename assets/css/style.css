@@ -1,0 +1,10 @@
+body{
+    background-color: aqua;
+}
+.gameDiv{
+    width: 75%;
+    /* align-content: center; */
+}
+/* #reset{
+    display: none;
+} */
