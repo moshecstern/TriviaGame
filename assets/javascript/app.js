@@ -8,54 +8,71 @@ $(document).ready(function () {
     // make array of answers for each question 
     var unanswered = 0;
     var currentQuestion;
+
     var questionOne = {
-        question: "which one of these is not from dc comics?",
-        answer: ["batman", "superman", "ant-man", "flash"],
-        correctAnswer: "ant-man"
+        question: "Which one of these is not from dc comics?",
+        answer: ["Batman", "Superman", "Ant-man", "Flash"],
+        correctAnswer: "Ant-man"
     };
 
     var questionTwo = {
-        question: "which one of these is not from marval comics?",
-        answer: ["deadpool", "cyborg", "hulk", "x-men"],
-        correctAnswer: "cyborg"
+        question: "Which one of these is not from marval comics?",
+        answer: ["Deadpool", "Cyborg", "Hulk", "X-Men"],
+        correctAnswer: "Cyborg"
     };
 
+    var questionThree = {
+        question: "Which one of these heroes can not fly?",
+        answer: ["Thor", "Aquaman", "Spider-Man", "Wolverine"],
+        correctAnswer: "Thor"
+    };
+
+    var questionFour = {
+        question: "What does Billie Batson say in order to run into?",
+        answer: ["I am Groot", "Wassssuuup", "Hickory Dickory Dock", "Shazam"],
+        correctAnswer: "Shazam"
+    };
+
+    var questionFive = {
+        question: "Who has radioactive blood?",
+        answer: ["Spider-Man", "Hulk", "Deadpool", "Superman"],
+        correctAnswer: "Spider-Man"
+    };
+
+    var questionSix = {
+        question: "Which hero did not lose his parents at an early age?",
+        answer: ["Iron Man", "Daredevil", "Batman", "Thor"],
+        correctAnswer: "Thor"
+    };
+
+    var questionSeven = {
+        question: "Which one of these newspapers is not real in the superhero universe?",
+        answer: ["Daily Bugle", "Gotham Gazette", "Daily Planet", "Cornwood Times"],
+        correctAnswer: "Cornwood Times"
+    };
+
+    var questionEight = {
+        question: "Who was the earliest popular superhero?",
+        answer: ["Mandrake the Magician", "Batman", "Superman", "The Human Torch"],
+        correctAnswer: "Mandrake the Magician"
+    };
+
+    var questionNine = {
+        question: "Who is the most powerful female superhero?",
+        answer: ["Super Girl", "Rogue", "Captain Marvel", "Wonder Woman"],
+        correctAnswer: "Wonder Woman"
+    };
+
+    var questionTen = {
+        question: "Which hero was a star quarterback at Gotham University?",
+        answer: ["Booster Gold", "Nightwing", "Blue Beetle", "Red Arrow"],
+        correctAnswer: "Booster Gold"
+    };
+
+
     var allQuestions = [questionOne, questionTwo];
+    // , questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
 
-    // on load have page display game name 
-    // start button to start the questions and answers
-
-    // when start button is clicked countdown starts
-    // loop through first question
-    // display question 
-    // display answers
-
-
-
-    // function listAllQuestions(){
-    //     for(var i = 0; i < allQuestions.length; i++){
-    //         console.log(allQuestions[i].question);
-    //         console.log(allQuestions[i].answer);
-    //         console.log(allQuestions[i].correctAnswer);
-    //         $("#question").append("<div>"+allQuestions[i].question+"</div> ");
-    //         $("#answers").append("<div><p>"+allQuestions[i].answer+"</p></div> <br>");
-    //         // $("#answers").on("click", function(){
-    //         //     let array = allQuestions[i].answer;
-    //         //     array.forEach(element => {
-
-    //         //     });
-    //         // })
-    //         // let answer = '<div id="answer'+  i + '">' + question.answer[i] + '</div>';
-    // //     $("#answers").append(answer);
-
-    //     // document.getElementById(question).addEventListener("click", function () {
-    //     //     allQuestions.answer;
-    //     // })
-    //     }
-    // }
-    // $("#reset").on("click", function() {
-    //     listAllQuestions();
-    // })
 
 
 
@@ -66,57 +83,42 @@ $(document).ready(function () {
         losses = 0;
         unanswered = 0;
         currentQuestion = 0;
+        answer=0;
+        console.log("why am i not working??");
         newSlide();
     }
     // function that will start countdown
     function startCountDown() {
-
-        countDown = 5;
+        $("#reset").hide();
+        countDown = 16;
         clearInterval(intervalId);
         intervalId = setInterval(decrement, 1000);
     }
     $("#reset").on("click", reset);
-// 
+    // 
     function decrement() {
         if (countDown <= 0 && playingGame) {
             clearInterval(intervalId);
-            // if countdown reaches 0, display correct answer
-            // $("#answers").text(rightAnswer);
-            //do score stuff
-            // currentQuestion++;
-            //display function for correct answer
-            // finalResults();
-            //with timeout call next slide
-            // then pull next question
             displayResult();
             // startCountDown();
             setTimeout(function () {
                 console.log("delay")
-                // if(allQuestions.length == currentQuestion-1){
                 if (currentQuestion > allQuestions.length - 1) {
-                    // checkAnswer();
                     finalResults();
-                    // countDown = 0;
-                    // show game stats. and make start button visable
                 } else {
-                    // checkAnswer(false);
-                    // currentQuestion++;
                     currentQuestion++;
                     newSlide();
                 }
             }, 3000);
-            // return;
         } else {
             countDown--;
         }
-        //  Decrease number by one.
         //  Show the number in the #show-number tag.
         $("#timeRemaining").text(countDown);
     };
 
     function newSlide() {
         console.log("lets see what question we are on " + currentQuestion);
-        // if(allQuestions.length === currentQuestion-1){
         if (currentQuestion > allQuestions.length - 1) {
             finalResults();
             // show game stats. and make start button visable
@@ -124,11 +126,6 @@ $(document).ready(function () {
             $("#answers").html("<div> </div>");
             startCountDown();
             let question = allQuestions[currentQuestion];
-            console.log("if statement to end loop");
-            //  
-            //  
-            // 
-
             $("#question").text(question.question);
             for (let i = 0; i < question.answer.length; i++) {
                 let answer = '<div id="answer' + i + '">' + question.answer[i] + '</div>';
@@ -195,6 +192,7 @@ $(document).ready(function () {
             + "<div> wrong answers: " + losses + "</div>"
             + "<div> unanswered: " + unanswered + "</div>");
         countDown = 1;
+        $("#reset").show();
         // hide countdown button
 
     }
