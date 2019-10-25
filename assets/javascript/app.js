@@ -70,7 +70,8 @@ $(document).ready(function () {
     };
 
 
-    var allQuestions = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
+    var allQuestions = [questionOne, questionTwo,];
+        //  questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
 // for some reason the background image in css didnt work
     // document.body.style.backgroundImage = "url('assets/images/superherobackground.jpg')";
     // document.body.style.backgroundSize = "cover";
@@ -86,6 +87,8 @@ $(document).ready(function () {
         currentQuestion = 0;
         answer=0;
         $("#hideContent").show();
+        $("#questions").show();
+        $("#results").hide();
         newSlide();
     }
     // function that will start countdown
@@ -127,19 +130,23 @@ $(document).ready(function () {
             $("#answers").html("<div> </div>");
             startCountDown();
             let question = allQuestions[currentQuestion];
+            console.log(question);
             $("#question").text(question.question);
             for (let i = 0; i < question.answer.length; i++) {
                 let answer = '<div id="answer' + i + '">' + question.answer[i] + '</div>';
                 $("#answers").append(answer);
+                console.log("i:", i);
+                console.log("answer:", answer);
                 let id = "answer" + i;
-                document.getElementById(id).addEventListener("click", function () {
+                console.log("id", id);
+                $(document).on("click", "#" + id, function () {
                     clearInterval(intervalId);
                     checkAnswer(question.answer[i]);
                 })
             }
             let rightAnswer = question.correctAnswer;
         };
-    }
+    };
     function checkAnswer(answer) {
         // console.log('answer', answer, answer.length);
         // console.log('correct answer', allQuestions[currentQuestion].correctAnswer, allQuestions[currentQuestion].correctAnswer.length);
@@ -187,9 +194,11 @@ $(document).ready(function () {
     function finalResults() {
         playingGame = false;
         // display score
-        $("#questions").html("<div> wins: " + wins + "</div>"
+        $("#results").html("<div> wins: " + wins + "</div>"
             + "<div> wrong answers: " + losses + "</div>"
             + "<div> unanswered: " + unanswered + "</div>");
+        $("#results").show();
+        $("#questions").hide();
         countDown = 1;
         $("#reset").show();
         // hide countdown button
