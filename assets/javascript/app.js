@@ -70,8 +70,7 @@ $(document).ready(function () {
     };
 
 
-    var allQuestions = [questionOne, questionTwo,];
-        //  questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
+    var allQuestions = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
 // for some reason the background image in css didnt work
     // document.body.style.backgroundImage = "url('assets/images/superherobackground.jpg')";
     // document.body.style.backgroundSize = "cover";
@@ -86,6 +85,8 @@ $(document).ready(function () {
         unanswered = 0;
         currentQuestion = 0;
         answer=0;
+        playingGame = true;
+        clearInterval(intervalId);
         $("#hideContent").show();
         $("#questions").show();
         $("#results").hide();
@@ -139,7 +140,7 @@ $(document).ready(function () {
                 console.log("answer:", answer);
                 let id = "answer" + i;
                 console.log("id", id);
-                $(document).on("click", "#" + id, function () {
+                document.getElementById(id).addEventListener("click", function () {
                     clearInterval(intervalId);
                     checkAnswer(question.answer[i]);
                 })
@@ -182,6 +183,7 @@ $(document).ready(function () {
             //display you lost
             $("#answers").html("<h2>nopeee!! the correct answer is " + allQuestions[currentQuestion].correctAnswer + "</h2>");
             losses++;
+            console.log("losses" + losses);
             // }else{
             //     unanswered++;
             // }
