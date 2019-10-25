@@ -72,8 +72,8 @@ $(document).ready(function () {
 
     var allQuestions = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
 // for some reason the background image in css didnt work
-    document.body.style.backgroundImage = "url('assets/images/superherobackground.jpg')";
-    document.body.style.backgroundSize = "cover";
+    // document.body.style.backgroundImage = "url('assets/images/superherobackground.jpg')";
+    // document.body.style.backgroundSize = "cover";
     $("#hideContent").hide();
 
 
