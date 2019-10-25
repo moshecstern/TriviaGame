@@ -70,10 +70,11 @@ $(document).ready(function () {
     };
 
 
-    var allQuestions = [questionOne, questionTwo];
-    // , questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
-
-
+    var allQuestions = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen];
+// for some reason the background image in css didnt work
+    document.body.style.backgroundImage = "url('assets/images/superherobackground.jpg')";
+    document.body.style.backgroundSize = "cover";
+    $("#hideContent").hide();
 
 
     // on load make html of #questions be a button to start game
@@ -84,7 +85,7 @@ $(document).ready(function () {
         unanswered = 0;
         currentQuestion = 0;
         answer=0;
-        console.log("why am i not working??");
+        $("#hideContent").show();
         newSlide();
     }
     // function that will start countdown
@@ -163,8 +164,6 @@ $(document).ready(function () {
 
     function displayResult(correctAnswer) {
         console.log(correctAnswer);
-        // if there is another slide
-        // if(allQuestions.length == currentQuestion-1){
         console.log("our current question is at" + currentQuestion);
         // finalResults();
         // }else
