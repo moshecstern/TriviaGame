@@ -136,10 +136,10 @@ $(document).ready(function () {
             for (let i = 0; i < question.answer.length; i++) {
                 let answer = '<div id="answer' + i + '">' + question.answer[i] + '</div>';
                 $("#answers").append(answer);
-                console.log("i:", i);
-                console.log("answer:", answer);
+                // console.log("i:", i);
+                // console.log("answer:", answer);
                 let id = "answer" + i;
-                console.log("id", id);
+                // console.log("id", id);
                 document.getElementById(id).addEventListener("click", function () {
                     clearInterval(intervalId);
                     checkAnswer(question.answer[i]);
@@ -210,31 +210,57 @@ $(document).ready(function () {
 
 
 
-    // time remaining should start countdown 
-    // have initial html load on page with the first array of answers to choose from 
 
-    // on click if correct answer was chosen 
-    // wins++ 
-    // make questions html show congrats
-    // make timeout for a few seconds
+// copied code- trying to make heros fly around page
+$("#reset").on("click",function() {
+    animateDiv($('.a'));
+        animateDiv($('.b'));
+        animateDiv($('.c'));
+        animateDiv($('.d'));
+        animateDiv($('.e'));
+        animateDiv($('.f'));
+});
 
-    // on click if answer is wrong then 
-    // make questions show nope! 
-    // losses++ 
-    // make answers show the correct answer
-    // make timeout for a few sec 
+function makeNewPosition($container) {
 
-    // either way show gif/ pic of right answer
-    // and go through the next question
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $container.height();
+    var w = $container.width();
 
-    // if time startCountDowns out then question is made not answered
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
 
-    // when we get to the end hide time remaining 
-    // have correct answers 
-    // how many were answered wrong
-    // unanswered 
-    // start over button apears to restart quiz
+    return [nh, nw];
+
+}
+function animateDiv($target) {
+    var newq = makeNewPosition($target.parent());
+    var oldq = $target.offset();
+    var speed = calcSpeed([oldq.top, oldq.left], newq);
+
+    $target.animate({
+        top: newq[0],
+        left: newq[1]
+    }, speed, function() {
+        animateDiv($target);
+    });
+
+};
+
+function calcSpeed(prev, next) {
+
+    var x = Math.abs(prev[1] - next[1]);
+    var y = Math.abs(prev[0] - next[0]);
+
+    var greatest = x > y ? x : y;
+
+    var speedModifier = 0.1;
+
+    var speed = Math.ceil(greatest / speedModifier);
+
+    return speed;
 
 
+}
 
 });
